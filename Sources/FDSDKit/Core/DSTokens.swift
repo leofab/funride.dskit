@@ -69,6 +69,14 @@ public enum DSTokens {
         public static let badgeLayersBackground = Color(hex: "#18181a")
         public static let badgeLayersBorder = Color(hex: "#7efff5")
         public static let badgeLayersText = Color(hex: "#7efff5")
+        
+        // Input-specific colors from Penpot
+        public static let inputDefault = Color(hex: "#212426")
+        public static let inputHover = Color(hex: "#2e3434")
+        public static let inputActive = Color(hex: "#18181a")
+        public static let inputBorder = Color(hex: "#7efff5")
+        public static let inputText = Color.white
+        public static let inputTextDisabled = Color(hex: "#8f9da3")
     }
     
     // MARK: - Spacing
@@ -96,6 +104,9 @@ public enum DSTokens {
         public static let notificationPadding: CGFloat = 12
         public static let notificationIconGap: CGFloat = 8
         public static let notificationActionGap: CGFloat = 8
+        
+        // Input-specific spacing
+        public static let inputIconGap: CGFloat = 4
     }
     
     // MARK: - Typography
@@ -130,6 +141,10 @@ public enum DSTokens {
         public static let badgeDefaultFontSize: CGFloat = 14
         public static let badgeLayersFontSize: CGFloat = 12
         public static let badgeFontWeight: Font.Weight = .regular
+        
+        // Input-specific typography
+        public static let inputFontSize: CGFloat = 12
+        public static let inputFontWeight: Font.Weight = .regular
     }
     
     // MARK: - Sizing
@@ -138,7 +153,6 @@ public enum DSTokens {
         public static let buttonHeight: CGFloat = 32
         public static let buttonMinWidth: CGFloat = 86
         public static let iconSize: CGFloat = 16
-        public static let inputHeight: CGFloat = 40
         
         // Accordion-specific sizing
         public static let accordionHeaderHeight: CGFloat = 50
@@ -178,6 +192,15 @@ public enum DSTokens {
         public static let badgeLayersHorizontalPadding: CGFloat = 6
         public static let badgeLayersVerticalPadding: CGFloat = 2
         public static let badgeBorderWidth: CGFloat = 1
+        
+        // Input-specific sizing
+        public static let inputHeight: CGFloat = 32
+        public static let inputWidthWithoutOpacity: CGFloat = 179
+        public static let inputWidthWithOpacity: CGFloat = 248
+        public static let inputSwatchSize: CGFloat = 16
+        public static let inputRadius: CGFloat = 8
+        public static let inputPadding: CGFloat = 8
+        public static let inputIconGap: CGFloat = 4
     }
     
     // MARK: - Borders

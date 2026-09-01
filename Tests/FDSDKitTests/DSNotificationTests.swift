@@ -148,9 +148,14 @@ final class DSNotificationTests: XCTestCase {
         notification.show()
         XCTAssertFalse(notification.isHidden)
         
-        // Hide notification
+        // Hide notification and wait for animation
+        let expectation = XCTestExpectation(description: "Hide animation")
         notification.hide()
-        XCTAssertTrue(notification.isHidden)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            XCTAssertTrue(notification.isHidden)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
     }
     #endif
 }
