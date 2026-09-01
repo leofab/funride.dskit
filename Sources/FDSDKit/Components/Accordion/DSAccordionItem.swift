@@ -7,7 +7,9 @@ public struct DSAccordionItem: Identifiable {
     public var icon: String?
     public var isExpanded: Bool
     public var isDisabled: Bool
+    public var selectedOption: String?
     public var content: AnyView
+    public var onSelection: ((String) -> Void)?
     
     /// Creates an accordion item
     /// - Parameters:
@@ -15,12 +17,16 @@ public struct DSAccordionItem: Identifiable {
     ///   - icon: Optional SF Symbol name displayed before the title
     ///   - isExpanded: Whether the item starts expanded (default: false)
     ///   - isDisabled: Whether the item is interactive (default: false)
+    ///   - selectedOption: The currently selected option text (displayed as subtitle)
     ///   - content: The view to display when expanded
+    ///   - onSelection: Optional callback when content is selected (triggers accordion collapse)
     public init<Content: View>(
         title: String,
         icon: String? = nil,
         isExpanded: Bool = false,
         isDisabled: Bool = false,
+        selectedOption: String? = nil,
+        onSelection: ((String) -> Void)? = nil,
         @ViewBuilder content: () -> Content
     ) {
         self.id = UUID()
@@ -28,6 +34,8 @@ public struct DSAccordionItem: Identifiable {
         self.icon = icon
         self.isExpanded = isExpanded
         self.isDisabled = isDisabled
+        self.selectedOption = selectedOption
+        self.onSelection = onSelection
         self.content = AnyView(content())
     }
 }

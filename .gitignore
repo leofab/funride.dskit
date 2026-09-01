@@ -47,5 +47,14 @@ tokens-penpot.json
 #md
 lfm2.5-designsystem.md
 ROADMAP.md
+design-badge.md
+design-combo-button.md
+design.md
+requirements-badge.md
+requirements-combo-button.md
+requirements.md
+tasks-badge.md
+tasks-combo-button.md
+tasks.md
 
 .github

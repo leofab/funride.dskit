@@ -24,6 +24,51 @@ public enum DSTokens {
         public static let accordionBorder = Color(hex: "#18181a")
         public static let accordionHeaderText = Color.white
         public static let accordionSubtext = Color(hex: "#8f9da3")
+        
+        // Combo button-specific colors from Penpot
+        public static let comboButtonDefault = Color(hex: "#212426")
+        public static let comboButtonHover = Color(hex: "#2e3434")
+        public static let comboButtonFocus = Color(hex: "#7efff5")
+        public static let comboButtonDisabled = Color(hex: "#18181a")
+        public static let comboButtonText = Color.white
+        public static let comboButtonSubtext = Color(hex: "#8f9da3")
+        public static let comboButtonBorder = Color(hex: "#2e3434")
+        
+        // Notification-specific colors from Penpot
+        public static let notificationDefault = Color(hex: "#18181a")
+        public static let notificationInfo = Color(hex: "#082c49")
+        public static let notificationError = Color(hex: "#500124")
+        public static let notificationWarning = Color(hex: "#500124") // To be confirmed
+        public static let notificationSuccess = Color(hex: "#1a3d2e") // To be confirmed
+        public static let notificationBorderDefault = Color(hex: "#2e3434")
+        public static let notificationBorderInfo = Color(hex: "#0e9be9")
+        public static let notificationBorderError = Color(hex: "#c80857")
+        public static let notificationBorderWarning = Color(hex: "#c80857") // To be confirmed
+        public static let notificationBorderSuccess = Color(hex: "#48c393") // To be confirmed
+        public static let notificationText = Color.white
+        public static let notificationTextSecondary = Color(hex: "#8f9da3")
+        
+        // Avatar-specific colors from Penpot
+        public static let avatarPink = Color(hex: "#f49ef7")
+        public static let avatarBlue = Color(hex: "#38c0fa")
+        public static let avatarGreen = Color(hex: "#48c393")
+        public static let avatarYellow = Color(hex: "#d4a03c")
+        public static let avatarPurple = Color(hex: "#9b6dff")
+        public static let avatarOrange = Color(hex: "#e0785c")
+        public static let avatarHover = Color(hex: "#18181a")
+        public static let avatarBorderSelected = Color(hex: "#38c0fa")
+        public static let avatarText = Color.black
+        
+        // Badge-specific colors from Penpot
+        public static let badgeDefaultBackground = Color(hex: "#18181a")
+        public static let badgeDefaultBorder = Color(hex: "#2e3434")
+        public static let badgeDefaultText = Color.white
+        public static let badgeErrorBackground = Color(hex: "#441606")
+        public static let badgeErrorBorder = Color(hex: "#fe4811")
+        public static let badgeErrorText = Color.white
+        public static let badgeLayersBackground = Color(hex: "#18181a")
+        public static let badgeLayersBorder = Color(hex: "#7efff5")
+        public static let badgeLayersText = Color(hex: "#7efff5")
     }
     
     // MARK: - Spacing
@@ -41,6 +86,16 @@ public enum DSTokens {
         public static let accordionItemGap: CGFloat = 2
         public static let accordionHeaderPadding: CGFloat = 16
         public static let accordionContentPadding: CGFloat = 16
+        
+        // Combo button-specific spacing
+        public static let comboButtonPadding: CGFloat = 12
+        public static let comboButtonIconGap: CGFloat = 8
+        public static let comboButtonOptionHeight: CGFloat = 40
+        
+        // Notification-specific spacing
+        public static let notificationPadding: CGFloat = 12
+        public static let notificationIconGap: CGFloat = 8
+        public static let notificationActionGap: CGFloat = 8
     }
     
     // MARK: - Typography
@@ -54,6 +109,27 @@ public enum DSTokens {
         // Accordion-specific typography
         public static let accordionTitleSize: CGFloat = 12
         public static let accordionTitleWeight: Font.Weight = .regular
+        
+        // Combo button-specific typography
+        public static let comboButtonLabelSize: CGFloat = 12
+        public static let comboButtonLabelWeight: Font.Weight = .regular
+        
+        // Notification-specific typography
+        public static let notificationLabelSize: CGFloat = 12
+        public static let notificationLabelWeight: Font.Weight = .regular
+        public static let notificationActionSize: CGFloat = 12
+        public static let notificationActionWeight: Font.Weight = .medium
+        
+        // Avatar-specific typography
+        public static let avatarSmallFontSize: CGFloat = 10
+        public static let avatarMediumFontSize: CGFloat = 12
+        public static let avatarLargeFontSize: CGFloat = 14
+        public static let avatarFontWeight: Font.Weight = .medium
+        
+        // Badge-specific typography
+        public static let badgeDefaultFontSize: CGFloat = 14
+        public static let badgeLayersFontSize: CGFloat = 12
+        public static let badgeFontWeight: Font.Weight = .regular
     }
     
     // MARK: - Sizing
@@ -69,6 +145,39 @@ public enum DSTokens {
         public static let accordionIconSize: CGFloat = 16
         public static let accordionItemRadius: CGFloat = 8
         public static let accordionContainerRadius: CGFloat = 24
+        
+        // Combo button-specific sizing
+        public static let comboButtonHeight: CGFloat = 48
+        public static let comboButtonWidth: CGFloat = 248
+        public static let comboButtonRadius: CGFloat = 8
+        public static let comboButtonIconSize: CGFloat = 16
+        public static let comboButtonDropdownMaxHeight: CGFloat = 200
+        
+        // Notification-specific sizing
+        public static let notificationInlineHeight: CGFloat = 50
+        public static let notificationInlineWidth: CGFloat = 627
+        public static let notificationInlineRadius: CGFloat = 8
+        public static let notificationToastHeight: CGFloat = 32
+        public static let notificationToastWidth: CGFloat = 228
+        public static let notificationToastRadius: CGFloat = 8
+        public static let notificationIconSize: CGFloat = 16
+        
+        // Avatar-specific sizing
+        public static let avatarSmall: CGFloat = 24
+        public static let avatarMedium: CGFloat = 32
+        public static let avatarLarge: CGFloat = 40
+        public static let avatarBorderWidth: CGFloat = 2
+        
+        // Badge-specific sizing
+        public static let badgeDefaultHeight: CGFloat = 32
+        public static let badgeLayersHeight: CGFloat = 20
+        public static let badgeDefaultRadius: CGFloat = 8
+        public static let badgeLayersRadius: CGFloat = 6
+        public static let badgeHorizontalPadding: CGFloat = 8
+        public static let badgeVerticalPadding: CGFloat = 4
+        public static let badgeLayersHorizontalPadding: CGFloat = 6
+        public static let badgeLayersVerticalPadding: CGFloat = 2
+        public static let badgeBorderWidth: CGFloat = 1
     }
     
     // MARK: - Borders

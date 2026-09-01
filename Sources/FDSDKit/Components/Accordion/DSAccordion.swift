@@ -27,6 +27,9 @@ public struct DSAccordion: View {
                     isExpanded: expandedIndices.contains(index),
                     onToggle: {
                         toggleItem(at: index)
+                    },
+                    onSelection: { option in
+                        selectOption(at: index, option: option)
                     }
                 )
             }
@@ -68,6 +71,20 @@ public struct DSAccordion: View {
             }
         }
     }
+    
+    private func selectOption(at index: Int, option: String) {
+        // First update the selected option (this will trigger view refresh)
+        items[index].selectedOption = option
+        items[index].onSelection?(option)
+        
+        // Then collapse after a brief delay to allow subtitle to render
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            withAnimation(.easeInOut(duration: self.configuration.animationDuration)) {
+                self.expandedIndices.remove(index)
+                self.items[index].isExpanded = false
+            }
+        }
+    }
 }
 
 /// Individual accordion item view
@@ -75,6 +92,7 @@ struct DSAccordionItemView: View {
     @Binding var item: DSAccordionItem
     let isExpanded: Bool
     let onToggle: () -> Void
+    let onSelection: (String) -> Void
     
     @State private var isHovered = false
     @State private var isPressed = false
@@ -96,14 +114,27 @@ struct DSAccordionItemView: View {
                             .foregroundColor(DSTokens.Colors.accordionHeaderText)
                     }
                     
-                    // Title
-                    Text(item.title)
-                        .font(.system(
-                            size: DSTokens.Typography.accordionTitleSize,
-                            weight: DSTokens.Typography.accordionTitleWeight
-                        ))
-                        .foregroundColor(DSTokens.Colors.accordionHeaderText)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    VStack(alignment: .leading, spacing: 2) {
+                        // Title
+                        Text(item.title)
+                            .font(.system(
+                                size: DSTokens.Typography.accordionTitleSize,
+                                weight: DSTokens.Typography.accordionTitleWeight
+                            ))
+                            .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                        
+                        // Selected option subtitle
+                        if let selectedOption = item.selectedOption {
+                            Text(selectedOption)
+                                .font(.system(
+                                    size: DSTokens.Typography.accordionTitleSize - 1,
+                                    weight: .regular
+                                ))
+                                .foregroundColor(DSTokens.Colors.accordionSubtext)
+                                .lineLimit(1)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Spacer()
                     
@@ -117,7 +148,7 @@ struct DSAccordionItemView: View {
                         .animation(.easeInOut(duration: 0.2), value: isExpanded)
                 }
                 .padding(.horizontal, DSTokens.Spacing.accordionHeaderPadding)
-                .frame(height: DSTokens.Sizing.accordionHeaderHeight)
+                .frame(minHeight: DSTokens.Sizing.accordionHeaderHeight)
                 .background(headerBackgroundColor)
                 .cornerRadius(DSTokens.Sizing.accordionItemRadius)
             }
@@ -131,9 +162,14 @@ struct DSAccordionItemView: View {
             // Content
             if isExpanded {
                 VStack(spacing: 0) {
-                    item.content
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(DSTokens.Spacing.accordionContentPadding)
+                    DSAccordionContentView(
+                        content: item.content,
+                        onSelection: { option in
+                            onSelection(option)
+                        }
+                    )
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(DSTokens.Spacing.accordionContentPadding)
                 }
                 .background(DSTokens.Colors.accordionBackground)
                 .cornerRadius(DSTokens.Sizing.accordionItemRadius)
@@ -155,25 +191,136 @@ struct DSAccordionItemView: View {
     }
 }
 
+/// Wrapper view for accordion content that provides selection handling
+struct DSAccordionContentView: View {
+    let content: AnyView
+    let onSelection: (String) -> Void
+    
+    var body: some View {
+        content
+            .environment(\.accordionSelectionHandler, onSelection)
+    }
+}
+
+/// Environment key for accordion selection handler
+private struct AccordionSelectionHandlerKey: EnvironmentKey {
+    static let defaultValue: (String) -> Void = { _ in }
+}
+
+extension EnvironmentValues {
+    var accordionSelectionHandler: (String) -> Void {
+        get { self[AccordionSelectionHandlerKey.self] }
+        set { self[AccordionSelectionHandlerKey.self] = newValue }
+    }
+}
+
+/// View modifier for creating selectable items in accordion content
+struct AccordionSelectableItemModifier: ViewModifier {
+    let option: String
+    @Environment(\.accordionSelectionHandler) var selectionHandler
+    
+    func body(content: Content) -> some View {
+        Button(action: {
+            selectionHandler(option)
+        }) {
+            content
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+extension View {
+    /// Makes this view selectable within an accordion
+    func accordionSelectable(_ option: String) -> some View {
+        modifier(AccordionSelectableItemModifier(option: option))
+    }
+}
+
 // MARK: - Preview
 #if DEBUG
 struct DSAccordion_Previews: PreviewProvider {
     static var previews: some View {
-        DSAccordion(items: .constant([
-            DSAccordionItem(title: "Section 1", icon: "star.fill") {
-                Text("Content for section 1")
+        DSAccordionPreview()
+    }
+}
+
+struct DSAccordionPreview: View {
+    @State private var items: [DSAccordionItem] = [
+        DSAccordionItem(title: "Account Settings", icon: "person.fill") {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Edit Profile")
+                    .accordionSelectable("Edit Profile")
                     .foregroundColor(DSTokens.Colors.accordionHeaderText)
-            },
-            DSAccordionItem(title: "Section 2", isExpanded: true) {
-                Text("Content for section 2")
+                
+                Text("Change Password")
+                    .accordionSelectable("Change Password")
                     .foregroundColor(DSTokens.Colors.accordionHeaderText)
-            },
-            DSAccordionItem(title: "Section 3 (Disabled)", isDisabled: true) {
-                Text("This should not be visible")
+                
+                Text("Notification Preferences")
+                    .accordionSelectable("Notification Preferences")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
             }
-        ]))
-        .padding()
-        .background(Color.black)
+        },
+        DSAccordionItem(title: "Payment Methods", icon: "creditcard.fill", isExpanded: true) {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Credit Card ending in 1234")
+                    .accordionSelectable("Credit Card ending in 1234")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                
+                Text("PayPal Account")
+                    .accordionSelectable("PayPal Account")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                
+                Text("Apple Pay")
+                    .accordionSelectable("Apple Pay")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                
+                Text("Add New Payment Method")
+                    .accordionSelectable("Add New Payment Method")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+            }
+        },
+        DSAccordionItem(title: "Shipping Address", icon: "map.fill") {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Home - 123 Main St, City, State 12345")
+                    .accordionSelectable("Home - 123 Main St, City, State 12345")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                
+                Text("Work - 456 Office Blvd, Suite 100")
+                    .accordionSelectable("Work - 456 Office Blvd, Suite 100")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                
+                Text("Add New Address")
+                    .accordionSelectable("Add New Address")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+            }
+        },
+        DSAccordionItem(title: "Order History", icon: "clock.fill") {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Order #12345 - $99.99")
+                    .accordionSelectable("Order #12345 - $99.99")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                
+                Text("Order #12346 - $149.99")
+                    .accordionSelectable("Order #12346 - $149.99")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+                
+                Text("Order #12347 - $79.99")
+                    .accordionSelectable("Order #12347 - $79.99")
+                    .foregroundColor(DSTokens.Colors.accordionHeaderText)
+            }
+        },
+        DSAccordionItem(title: "Help & Support", icon: "questionmark.circle.fill", isDisabled: true) {
+            Text("This section is currently unavailable")
+                .foregroundColor(DSTokens.Colors.accordionHeaderText)
+        }
+    ]
+    
+    var body: some View {
+        DSAccordion(items: $items)
+            .padding()
+            .background(Color.black)
     }
 }
 #endif

@@ -97,6 +97,35 @@ final class DSAccordionTests: XCTestCase {
         XCTAssertTrue(item.isDisabled)
     }
     
+    func testAccordionItemWithSelectedOption() {
+        let item = DSAccordionItem(
+            title: "Payment Methods",
+            icon: "creditcard.fill",
+            selectedOption: "Credit Card ending in 1234"
+        ) {
+            Text("Content")
+        }
+        
+        XCTAssertEqual(item.title, "Payment Methods")
+        XCTAssertEqual(item.selectedOption, "Credit Card ending in 1234")
+    }
+    
+    func testAccordionItemSelectionCallback() {
+        var selectedOption: String?
+        
+        let item = DSAccordionItem(
+            title: "Payment Methods",
+            onSelection: { option in
+                selectedOption = option
+            }
+        ) {
+            Text("Content")
+        }
+        
+        item.onSelection?("Credit Card")
+        XCTAssertEqual(selectedOption, "Credit Card")
+    }
+    
     func testAccordionItemUniqueId() {
         let item1 = DSAccordionItem(title: "Section 1") { Text("1") }
         let item2 = DSAccordionItem(title: "Section 2") { Text("2") }
