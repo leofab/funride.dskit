@@ -83,6 +83,12 @@ public enum DSTokens {
         public static let paginationBorder = Color(hex: "#2e3434")
         public static let paginationText = Color(hex: "#8f9da3")
         public static let paginationIcon = Color(hex: "#8f9da3")
+        
+        // Pill-specific colors from Penpot
+        public static let pillDefaultBackground = Color(hex: "#212426")
+        public static let pillHoverBackground = Color(hex: "#2e3434")
+        public static let pillFocusBorder = Color(hex: "#7efff5")
+        public static let pillText = Color.white
     }
     
     // MARK: - Spacing
@@ -116,6 +122,10 @@ public enum DSTokens {
         
         // Pagination-specific spacing
         public static let paginationButtonSpacing: CGFloat = 8
+        
+        // Pill-specific spacing
+        public static let pillIconTextGap: CGFloat = 4
+        public static let pillHorizontalPadding: CGFloat = 8
     }
     
     // MARK: - Typography
@@ -158,6 +168,10 @@ public enum DSTokens {
         // Pagination-specific typography
         public static let paginationPageSize: CGFloat = 14
         public static let paginationPageWeight: Font.Weight = .regular
+        
+        // Pill-specific typography
+        public static let pillFontSize: CGFloat = 12
+        public static let pillFontWeight: Font.Weight = .regular
     }
     
     // MARK: - Sizing
@@ -223,6 +237,12 @@ public enum DSTokens {
         public static let paginationButtonHeight: CGFloat = 64
         public static let paginationButtonRadius: CGFloat = 8
         public static let paginationIconSize: CGFloat = 16
+        
+        // Pill-specific sizing
+        public static let pillHeight: CGFloat = 24
+        public static let pillRadius: CGFloat = 6
+        public static let pillBorderWidth: CGFloat = 1
+        public static let pillCloseIconSize: CGFloat = 12
     }
     
     // MARK: - Borders
