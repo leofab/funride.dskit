@@ -101,6 +101,14 @@ public enum DSTokens {
         public static let selectDropdownBackground = Color(hex: "#212426")
         public static let selectOptionHover = Color(hex: "#2e3434")
         public static let selectOptionSelected = Color(hex: "#2e3434")
+        
+        // Tabs-specific colors from Penpot
+        public static let tabsDefaultBackground = Color.clear
+        public static let tabsSelectedBackground = Color(hex: "#2e3434")
+        public static let tabsHoverBackground = Color(hex: "#2e3434")
+        public static let tabsText = Color.white
+        public static let tabsTextMuted = Color(hex: "#8f9da3")
+        public static let tabsContainerBackground = Color(hex: "#000000")
     }
     
     // MARK: - Spacing
@@ -145,6 +153,12 @@ public enum DSTokens {
         public static let selectOptionPadding: CGFloat = 8
         public static let selectOptionGap: CGFloat = 4
         public static let selectDropdownPadding: CGFloat = 4
+        
+        // Tabs-specific spacing
+        public static let tabsItemPaddingHorizontal: CGFloat = 12
+        public static let tabsItemPaddingVertical: CGFloat = 8
+        public static let tabsIconTextGap: CGFloat = 4
+        public static let tabsItemGap: CGFloat = 16
     }
     
     // MARK: - Typography
@@ -197,6 +211,10 @@ public enum DSTokens {
         public static let selectFontWeight: Font.Weight = .regular
         public static let selectLabelSize: CGFloat = 12
         public static let selectLabelWeight: Font.Weight = .medium
+        
+        // Tabs-specific typography
+        public static let tabsLabelSize: CGFloat = 12
+        public static let tabsLabelWeight: Font.Weight = .regular
     }
     
     // MARK: - Sizing
@@ -277,6 +295,11 @@ public enum DSTokens {
         public static let selectIconSize: CGFloat = 16
         public static let selectDropdownMaxHeight: CGFloat = 200
         public static let selectOptionHeight: CGFloat = 32
+        
+        // Tabs-specific sizing
+        public static let tabsHeight: CGFloat = 32
+        public static let tabsBorderRadius: CGFloat = 8
+        public static let tabsIconSize: CGFloat = 16
     }
     
     // MARK: - Borders
