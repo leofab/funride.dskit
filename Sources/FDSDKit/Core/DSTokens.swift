@@ -109,6 +109,18 @@ public enum DSTokens {
         public static let tabsText = Color.white
         public static let tabsTextMuted = Color(hex: "#8f9da3")
         public static let tabsContainerBackground = Color(hex: "#000000")
+        
+        // TextArea-specific colors from Penpot
+        public static let textAreaDefault = Color(hex: "#212426")
+        public static let textAreaHover = Color(hex: "#2e3434")
+        public static let textAreaActive = Color(hex: "#000000")
+        public static let textAreaDisabled = Color(hex: "#18181a")
+        public static let textAreaText = Color(hex: "#ffffff")
+        public static let textAreaTextPlaceholder = Color(hex: "#8f9da3")
+        public static let textAreaBorderFocus = Color(hex: "#7efff5")
+        public static let textAreaBorderSuccess = Color(hex: "#00d1b8")
+        public static let textAreaBorderError = Color(hex: "#ff3277")
+        public static let textAreaBorderDisabled = Color(hex: "#2e3434")
     }
     
     // MARK: - Spacing
@@ -159,6 +171,9 @@ public enum DSTokens {
         public static let tabsItemPaddingVertical: CGFloat = 8
         public static let tabsIconTextGap: CGFloat = 4
         public static let tabsItemGap: CGFloat = 16
+        
+        // TextArea-specific spacing
+        public static let textAreaPadding: CGFloat = 8
     }
     
     // MARK: - Typography
@@ -215,6 +230,12 @@ public enum DSTokens {
         // Tabs-specific typography
         public static let tabsLabelSize: CGFloat = 12
         public static let tabsLabelWeight: Font.Weight = .regular
+        
+        // TextArea-specific typography
+        public static let textAreaFontSize: CGFloat = 12
+        public static let textAreaFontWeight: Font.Weight = .regular
+        public static let textAreaLabelSize: CGFloat = 12
+        public static let textAreaLabelWeight: Font.Weight = .medium
     }
     
     // MARK: - Sizing
@@ -300,6 +321,11 @@ public enum DSTokens {
         public static let tabsHeight: CGFloat = 32
         public static let tabsBorderRadius: CGFloat = 8
         public static let tabsIconSize: CGFloat = 16
+        
+        // TextArea-specific sizing
+        public static let textAreaHeight: CGFloat = 96
+        public static let textAreaWidth: CGFloat = 228
+        public static let textAreaRadius: CGFloat = 8
     }
     
     // MARK: - Borders
@@ -338,3 +364,31 @@ extension Color {
         )
     }
 }
+
+#if canImport(UIKit)
+// MARK: - UIColor Extension
+extension UIColor {
+    convenience init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3:
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6:
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8:
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(
+            red: CGFloat(r) / 255,
+            green: CGFloat(g) / 255,
+            blue: CGFloat(b) / 255,
+            alpha: CGFloat(a) / 255
+        )
+    }
+}
+#endif
