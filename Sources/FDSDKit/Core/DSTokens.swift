@@ -89,6 +89,18 @@ public enum DSTokens {
         public static let pillHoverBackground = Color(hex: "#2e3434")
         public static let pillFocusBorder = Color(hex: "#7efff5")
         public static let pillText = Color.white
+        
+        // Select-specific colors from Penpot
+        public static let selectDefault = Color(hex: "#212426")
+        public static let selectHover = Color(hex: "#2e3434")
+        public static let selectFocus = Color(hex: "#7efff5")
+        public static let selectDisabled = Color(hex: "#18181a")
+        public static let selectText = Color.white
+        public static let selectTextDisabled = Color(hex: "#8f9da3")
+        public static let selectBorder = Color(hex: "#7efff5")
+        public static let selectDropdownBackground = Color(hex: "#212426")
+        public static let selectOptionHover = Color(hex: "#2e3434")
+        public static let selectOptionSelected = Color(hex: "#2e3434")
     }
     
     // MARK: - Spacing
@@ -126,6 +138,13 @@ public enum DSTokens {
         // Pill-specific spacing
         public static let pillIconTextGap: CGFloat = 4
         public static let pillHorizontalPadding: CGFloat = 8
+        
+        // Select-specific spacing
+        public static let selectPadding: CGFloat = 8
+        public static let selectIconGap: CGFloat = 4
+        public static let selectOptionPadding: CGFloat = 8
+        public static let selectOptionGap: CGFloat = 4
+        public static let selectDropdownPadding: CGFloat = 4
     }
     
     // MARK: - Typography
@@ -172,6 +191,12 @@ public enum DSTokens {
         // Pill-specific typography
         public static let pillFontSize: CGFloat = 12
         public static let pillFontWeight: Font.Weight = .regular
+        
+        // Select-specific typography
+        public static let selectFontSize: CGFloat = 12
+        public static let selectFontWeight: Font.Weight = .regular
+        public static let selectLabelSize: CGFloat = 12
+        public static let selectLabelWeight: Font.Weight = .medium
     }
     
     // MARK: - Sizing
@@ -243,6 +268,15 @@ public enum DSTokens {
         public static let pillRadius: CGFloat = 6
         public static let pillBorderWidth: CGFloat = 1
         public static let pillCloseIconSize: CGFloat = 12
+        
+        // Select-specific sizing
+        public static let selectHeight: CGFloat = 32
+        public static let selectMinWidth: CGFloat = 120
+        public static let selectMaxWidth: CGFloat = 248
+        public static let selectRadius: CGFloat = 8
+        public static let selectIconSize: CGFloat = 16
+        public static let selectDropdownMaxHeight: CGFloat = 200
+        public static let selectOptionHeight: CGFloat = 32
     }
     
     // MARK: - Borders
