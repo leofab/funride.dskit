@@ -121,6 +121,14 @@ public enum DSTokens {
         public static let textAreaBorderSuccess = Color(hex: "#00d1b8")
         public static let textAreaBorderError = Color(hex: "#ff3277")
         public static let textAreaBorderDisabled = Color(hex: "#2e3434")
+        
+        // ProjectHeader-specific colors from Penpot
+        public static let projectHeaderBackground = Color(hex: "#18181a")
+        public static let projectHeaderSubtitle = Color(hex: "#8f9da3")
+        public static let projectHeaderTitle = Color.white
+        public static let projectHeaderButtonBackground = Color.clear
+        public static let projectHeaderButtonHover = Color(hex: "#2e3434")
+        public static let projectHeaderIconButton = Color.white
     }
     
     // MARK: - Spacing
@@ -174,6 +182,12 @@ public enum DSTokens {
         
         // TextArea-specific spacing
         public static let textAreaPadding: CGFloat = 8
+        
+        // ProjectHeader-specific spacing
+        public static let projectHeaderPaddingH: CGFloat = 12
+        public static let projectHeaderPaddingV: CGFloat = 8
+        public static let projectHeaderGap: CGFloat = 4
+        public static let projectHeaderColumnGap: CGFloat = 4
     }
     
     // MARK: - Typography
@@ -236,6 +250,12 @@ public enum DSTokens {
         public static let textAreaFontWeight: Font.Weight = .regular
         public static let textAreaLabelSize: CGFloat = 12
         public static let textAreaLabelWeight: Font.Weight = .medium
+        
+        // ProjectHeader-specific typography
+        public static let projectHeaderSubtitleSize: CGFloat = 12
+        public static let projectHeaderSubtitleWeight: Font.Weight = .medium
+        public static let projectHeaderTitleSize: CGFloat = 14
+        public static let projectHeaderTitleWeight: Font.Weight = .regular
     }
     
     // MARK: - Sizing
@@ -326,6 +346,13 @@ public enum DSTokens {
         public static let textAreaHeight: CGFloat = 96
         public static let textAreaWidth: CGFloat = 228
         public static let textAreaRadius: CGFloat = 8
+        
+        // ProjectHeader-specific sizing
+        public static let projectHeaderHeight: CGFloat = 52
+        public static let projectHeaderLogoSize: CGFloat = 36
+        public static let projectHeaderButtonSize: CGFloat = 32
+        public static let projectHeaderButtonRadius: CGFloat = 8
+        public static let projectHeaderIconSize: CGFloat = 16
     }
     
     // MARK: - Borders
