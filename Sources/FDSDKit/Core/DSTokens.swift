@@ -129,6 +129,16 @@ public enum DSTokens {
         public static let projectHeaderButtonBackground = Color.clear
         public static let projectHeaderButtonHover = Color(hex: "#2e3434")
         public static let projectHeaderIconButton = Color.white
+        
+        // Login-specific colors from Penpot
+        public static let loginBackground = Color(hex: "#18181a")
+        public static let loginCard = Color(hex: "#212426")
+        public static let loginTitle = Color.white
+        public static let loginSubtitle = Color(hex: "#8f9da3")
+        public static let loginLink = Color(hex: "#7efff5")
+        public static let loginDivider = Color(hex: "#2e3434")
+        public static let loginGoogleBackground = Color(hex: "#212426")
+        public static let loginGoogleBorder = Color(hex: "#2e3434")
     }
     
     // MARK: - Spacing
@@ -188,6 +198,13 @@ public enum DSTokens {
         public static let projectHeaderPaddingV: CGFloat = 8
         public static let projectHeaderGap: CGFloat = 4
         public static let projectHeaderColumnGap: CGFloat = 4
+        
+        // Login-specific spacing
+        public static let loginCardPadding: CGFloat = 24
+        public static let loginFieldGap: CGFloat = 16
+        public static let loginSectionGap: CGFloat = 24
+        public static let loginLogoGap: CGFloat = 32
+        public static let loginLinkGap: CGFloat = 16
     }
     
     // MARK: - Typography
@@ -256,6 +273,16 @@ public enum DSTokens {
         public static let projectHeaderSubtitleWeight: Font.Weight = .medium
         public static let projectHeaderTitleSize: CGFloat = 14
         public static let projectHeaderTitleWeight: Font.Weight = .regular
+        
+        // Login-specific typography
+        public static let loginTitleSize: CGFloat = 24
+        public static let loginTitleWeight: Font.Weight = .bold
+        public static let loginSubtitleSize: CGFloat = 14
+        public static let loginSubtitleWeight: Font.Weight = .regular
+        public static let loginLinkSize: CGFloat = 12
+        public static let loginLinkWeight: Font.Weight = .medium
+        public static let loginDividerTextSize: CGFloat = 12
+        public static let loginDividerTextWeight: Font.Weight = .regular
     }
     
     // MARK: - Sizing
@@ -353,6 +380,13 @@ public enum DSTokens {
         public static let projectHeaderButtonSize: CGFloat = 32
         public static let projectHeaderButtonRadius: CGFloat = 8
         public static let projectHeaderIconSize: CGFloat = 16
+        
+        // Login-specific sizing
+        public static let loginCardRadius: CGFloat = 12
+        public static let loginLogoSize: CGFloat = 64
+        public static let loginGoogleIconSize: CGFloat = 20
+        public static let loginDividerHeight: CGFloat = 1
+        public static let loginDividerWidth: CGFloat = 40
     }
     
     // MARK: - Borders

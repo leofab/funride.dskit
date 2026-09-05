@@ -75,19 +75,10 @@ public class DSButtonUIKit: UIButton {
 // MARK: - UIColor Extension
 extension UIColor {
     convenience init(_ color: Color) {
-        let scanner = Scanner(string: color.description.trimmingCharacters(in: CharacterSet.alphanumerics.inverted))
-        var hexNumber: UInt64 = 0
-        scanner.scanHexInt64(&hexNumber)
-        
-        let r, g, b: CGFloat
-        switch color.description.count {
-        case 7: // #RRGGBB
-            r = CGFloat((hexNumber & 0xFF0000) >> 16) / 255
-            g = CGFloat((hexNumber & 0x00FF00) >> 8) / 255
-            b = CGFloat(hexNumber & 0x0000FF) / 255
-            self.init(red: r, green: g, blue: b, alpha: 1.0)
-        default:
-            self.init(red: 0, green: 0, blue: 0, alpha: 1.0)
+        if let cgColor = color.cgColor {
+            self.init(cgColor: cgColor)
+        } else {
+            self.init(red: 0, green: 0, blue: 0, alpha: 1)
         }
     }
 }

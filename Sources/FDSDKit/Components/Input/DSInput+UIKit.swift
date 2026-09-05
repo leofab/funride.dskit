@@ -99,7 +99,7 @@ public class DSInputView: UIView {
     }
     
     public var placeholder: String = "" {
-        didSet { textField.placeholder = placeholder }
+        didSet { updateAppearance() }
     }
     
     public var style: DSInputStyle = .default {
@@ -116,6 +116,10 @@ public class DSInputView: UIView {
     
     public var swatchColor: UIColor = .white {
         didSet { swatchView.backgroundColor = swatchColor }
+    }
+    
+    public var isSecureTextEntry: Bool = false {
+        didSet { textField.isSecureTextEntry = isSecureTextEntry }
     }
     
     public var onSwatchTap: (() -> Void)?
@@ -149,16 +153,17 @@ public class DSInputView: UIView {
         backgroundColor = UIColor(DSTokens.Colors.inputDefault)
         layer.cornerRadius = DSTokens.Sizing.inputRadius
         clipsToBounds = true
-        
+        accessibilityIdentifier = "DSInputView"
+
         // Swatch
         swatchView.layer.cornerRadius = 4
         swatchView.translatesAutoresizingMaskIntoConstraints = false
         swatchView.isHidden = true
         addSubview(swatchView)
-        
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(swatchTapped))
         swatchView.addGestureRecognizer(tapGesture)
-        
+
         // TextField
         let inputFont = UIFont.systemFont(ofSize: DSTokens.Typography.inputFontSize,
                                           weight: UIFont.Weight(DSTokens.Typography.inputFontWeight))
@@ -168,6 +173,7 @@ public class DSInputView: UIView {
         textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
+        textField.accessibilityIdentifier = "DSInputTextField"
         addSubview(textField)
         
         NSLayoutConstraint.activate([
@@ -210,11 +216,11 @@ public class DSInputView: UIView {
     
     public func updateAppearance() {
         let currentStyle = resolveStyle()
-        
+
         backgroundColor = UIColor(currentStyle.backgroundColor)
         textField.textColor = UIColor(currentStyle.textColor)
         alpha = CGFloat(currentStyle.opacity)
-        
+
         // Placeholder
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
@@ -224,6 +230,11 @@ public class DSInputView: UIView {
                                         weight: UIFont.Weight(DSTokens.Typography.inputFontWeight))
             ]
         )
+
+        // Accessibility
+        textField.accessibilityLabel = placeholder.isEmpty ? "Text input" : placeholder
+        accessibilityLabel = placeholder.isEmpty ? "Text input" : placeholder
+        accessibilityHint = isDisabled ? "Disabled" : "Double tap to edit"
         
         // Border
         layer.borderWidth = currentStyle.borderWidth
