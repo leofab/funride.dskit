@@ -57,6 +57,6 @@ tasks-badge.md
 tasks-combo-button.md
 tasks.md
 
-.github
+.github/*
 !.github/workflows/
 .agent_work
