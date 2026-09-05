@@ -7,11 +7,12 @@ public enum DSInputStyle {
     case active
     case focus
     case disabled
+    case placeholder
     
     /// Background color for the input style
     var backgroundColor: Color {
         switch self {
-        case .default, .focus:
+        case .default, .focus, .placeholder:
             return DSTokens.Colors.inputDefault
         case .hover:
             return DSTokens.Colors.inputHover
@@ -45,6 +46,8 @@ public enum DSInputStyle {
         switch self {
         case .disabled:
             return DSTokens.Colors.inputTextDisabled
+        case .placeholder:
+            return DSTokens.Colors.inputTextPlaceholder
         default:
             return DSTokens.Colors.inputText
         }
@@ -52,7 +55,7 @@ public enum DSInputStyle {
     
     /// Placeholder color for the input style
     var placeholderColor: Color {
-        return DSTokens.Colors.inputTextDisabled
+        return DSTokens.Colors.inputTextPlaceholder
     }
     
     /// Opacity for the input style

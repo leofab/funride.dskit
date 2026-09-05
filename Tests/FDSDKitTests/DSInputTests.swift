@@ -82,11 +82,11 @@ final class DSInputTests: XCTestCase {
     }
     
     func testInputStylePlaceholderColors() {
-        XCTAssertEqual(DSInputStyle.default.placeholderColor, DSTokens.Colors.inputTextDisabled)
-        XCTAssertEqual(DSInputStyle.hover.placeholderColor, DSTokens.Colors.inputTextDisabled)
-        XCTAssertEqual(DSInputStyle.active.placeholderColor, DSTokens.Colors.inputTextDisabled)
-        XCTAssertEqual(DSInputStyle.focus.placeholderColor, DSTokens.Colors.inputTextDisabled)
-        XCTAssertEqual(DSInputStyle.disabled.placeholderColor, DSTokens.Colors.inputTextDisabled)
+        XCTAssertEqual(DSInputStyle.default.placeholderColor, DSTokens.Colors.inputTextPlaceholder)
+        XCTAssertEqual(DSInputStyle.hover.placeholderColor, DSTokens.Colors.inputTextPlaceholder)
+        XCTAssertEqual(DSInputStyle.active.placeholderColor, DSTokens.Colors.inputTextPlaceholder)
+        XCTAssertEqual(DSInputStyle.focus.placeholderColor, DSTokens.Colors.inputTextPlaceholder)
+        XCTAssertEqual(DSInputStyle.disabled.placeholderColor, DSTokens.Colors.inputTextPlaceholder)
     }
     
     func testInputStyleOpacity() {

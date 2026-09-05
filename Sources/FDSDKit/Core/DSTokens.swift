@@ -77,6 +77,7 @@ public enum DSTokens {
         public static let inputBorder = Color(hex: "#7efff5")
         public static let inputText = Color.white
         public static let inputTextDisabled = Color(hex: "#8f9da3")
+        public static let inputTextPlaceholder = Color(hex: "#b8c4cc")
         
         // Pagination-specific colors from Penpot
         public static let paginationBackground = Color(hex: "#18181a")

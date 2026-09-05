@@ -98,26 +98,32 @@ public struct DSInput: View {
     }
     
     private var textField: some View {
-        TextField(placeholder, text: $internalText, onEditingChanged: { editing in
-            if editing {
-                // Focus: select all text
-                isFocused = true
-            } else {
-                // Unfocus: save content
+        ZStack(alignment: .leading) {
+            if internalText.isEmpty {
+                Text(placeholder)
+                    .font(.system(size: DSTokens.Typography.inputFontSize,
+                                  weight: DSTokens.Typography.inputFontWeight))
+                    .foregroundColor(currentStyle.placeholderColor)
+            }
+            TextField("", text: $internalText, onEditingChanged: { editing in
+                if editing {
+                    isFocused = true
+                } else {
+                    commitChanges()
+                    isFocused = false
+                }
+            }, onCommit: {
                 commitChanges()
                 isFocused = false
-            }
-        }, onCommit: {
-            commitChanges()
-            isFocused = false
-        })
-        .font(.system(size: DSTokens.Typography.inputFontSize,
-                      weight: DSTokens.Typography.inputFontWeight))
-        .foregroundColor(currentStyle.textColor)
-        .disableAutocorrection(true)
-        #if os(iOS)
-        .textInputAutocapitalization(.never)
-        #endif
+            })
+            .font(.system(size: DSTokens.Typography.inputFontSize,
+                          weight: DSTokens.Typography.inputFontWeight))
+            .foregroundColor(currentStyle.textColor)
+            .disableAutocorrection(true)
+            #if os(iOS)
+            .textInputAutocapitalization(.never)
+            #endif
+        }
         .padding(.horizontal, DSTokens.Spacing.sm)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
