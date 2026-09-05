@@ -58,4 +58,5 @@ tasks-combo-button.md
 tasks.md
 
 .github
+!.github/workflows/
 .agent_work
